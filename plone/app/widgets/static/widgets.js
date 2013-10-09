@@ -4339,7 +4339,8 @@ define('js/patterns/select2',[
 
                         // Compensate for month 0index and create a validated date.
                         // Then set it as the date selected
-                        setDateSelected( createValidatedDate([ year, --month, date ]), isSuperficial )
+                        //update - month is already compensated
+                        setDateSelected( createValidatedDate([ year, month, date ]), isSuperficial )
 
                         return P
                     }, //setDate
@@ -5492,7 +5493,7 @@ define('js/patterns/select2',[
         if ( Array.isArray( datePassed ) ) {
 
             // Create the date
-            datePassed = new Date( datePassed[ 0 ], datePassed[ 1 ], datePassed[ 2 ] )
+            datePassed = new Date( datePassed[ 0 ], datePassed[ 1 ]-1, datePassed[ 2 ] )
         }
 
         // If the date passed is a number
@@ -6054,7 +6055,7 @@ define('js/patterns/datetime',[
           minutes !== '') {
         self._rawDate = new Date(
           parseInt(year, 10),
-          parseInt(month, 10),
+          parseInt(month, 10)-1,
           parseInt(day, 10),
           parseInt(hour, 10) + (ampm === 'PM' && 12 || 0),
           parseInt(minutes, 10)
@@ -6073,13 +6074,13 @@ define('js/patterns/datetime',[
             case 'yyyy':
               return '' + self._rawDate.getFullYear();
             case 'm':
-              return '' + self._rawDate.getMonth();
+              return '' + (self._rawDate.getMonth()+1);
             case 'mm':
-              return ('0' + self._rawDate.getMonth()).slice(-2);
+              return ('0' + (self._rawDate.getMonth()+1)).slice(-2);
             case 'mmm':
-              return self.pickadateOptions.monthsShort[self._rawDate.getMonth()];
+              return self.pickadateOptions.monthsShort[(self._rawDate.getMonth()+1)];
             case 'mmmm':
-              return self.pickadateOptions.monthsFull[self._rawDate.getMonth()];
+              return self.pickadateOptions.monthsFull[(self._rawDate.getMonth()+1)];
             case 'd':
               return '' + self._rawDate.getDate();
             case 'dd':
