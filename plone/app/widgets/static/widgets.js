@@ -4339,8 +4339,7 @@ define('js/patterns/select2',[
 
                         // Compensate for month 0index and create a validated date.
                         // Then set it as the date selected
-                        //update - month is already compensated
-                        setDateSelected( createValidatedDate([ year, month, date ]), isSuperficial )
+                        setDateSelected( createValidatedDate([ year, --month, date ]), isSuperficial )
 
                         return P
                     }, //setDate
@@ -5493,7 +5492,7 @@ define('js/patterns/select2',[
         if ( Array.isArray( datePassed ) ) {
 
             // Create the date
-            datePassed = new Date( datePassed[ 0 ], datePassed[ 1 ]-1, datePassed[ 2 ] )
+            datePassed = new Date( datePassed[ 0 ], datePassed[ 1 ], datePassed[ 2 ] )
         }
 
         // If the date passed is a number
