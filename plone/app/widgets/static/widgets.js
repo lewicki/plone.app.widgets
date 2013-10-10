@@ -6047,11 +6047,11 @@ define('js/patterns/datetime',[
       var self = this;
       self._rawDate = undefined;
       self.$el.attr('value', '');
+      if (!hour) hour = '00';
+      if (!minutes) minutes = '00';
       if (year !== '' &&
           month !== '' &&
-          day !== '' &&
-          hour !== '' &&
-          minutes !== '') {
+          day !== '') {
         self._rawDate = new Date(
           parseInt(year, 10),
           parseInt(month, 10)-1,
